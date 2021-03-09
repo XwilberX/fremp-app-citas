@@ -13,7 +13,7 @@ class Profile extends Component {
         if (!localStorage.getItem("token")) {
             window.location = "/login"
         }        
-        axios.get("http://127.0.0.1:5000/api/user/"+localStorage.getItem("user"))
+        axios.get("api/user/"+localStorage.getItem("user"))
         .then((res) => {
             this.setState({user: res.data})
             // console.log(res.data.nombre)
