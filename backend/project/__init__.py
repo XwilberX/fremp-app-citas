@@ -3,7 +3,8 @@ from flask_mongoengine import MongoEngine
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from flask_mail import Mail
-app = Flask(__name__)
+
+app = Flask(__name__, static_folder="build", static_url_path="/")
 
 app.config['MONGODB_SETTINGS'] = {
     'db' : 'registro',
@@ -35,6 +36,16 @@ mail.init_app(app)
 jwt = JWTManager(app)
 
 app.config['JWT_SECRET_KEY'] = 'SECRET_KEY'
+
+@app.route("/<a>")
+def react_routes(a):
+    return app.send_static_file("index.html")
+
+
+@app.route("/")
+def react_index():
+    return app.send_static_file("index.html")
+
 
 
 from project.views.user import UserView
