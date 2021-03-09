@@ -6,11 +6,9 @@ from flask_mail import Mail
 
 app = Flask(__name__, static_folder="build", static_url_path="/")
 
-app.config['MONGODB_SETTINGS'] = {
-    'db' : 'registro',
-    'host' : 'localhost',
-    'port' : 27017
-}
+DB_URI = "mongodb+srv://infrabyte:%40Mendez99@cluster0.sl6e0.mongodb.net/registro?retryWrites=true&w=majority"
+
+app.config["MONGODB_HOST"] = DB_URI
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
