@@ -1,7 +1,7 @@
 from http import  HTTPStatus
 from datetime import datetime
-import locale
-import pytz
+# import locale
+# import pytz
 from bson import ObjectId
 from flask_classful import FlaskView
 from flask_mail import Message
@@ -86,10 +86,10 @@ class CitaView(FlaskView):
         user = UserModel.objects(id=ObjectId(id)).first()
         email = user.email
         nombreC = str(user.nombre + ' ' + user.apellidos).title()
-        locale.setlocale(locale.LC_TIME, "es_MX")
-        MX = pytz.timezone('America/Mexico_City')
-        fecha = datetime.strptime(body['fechacita'], '%Y-%m-%d %H:%M:%S').date().strftime("%d %B, %Y").tzinfo(MX)
-        hora = datetime.strptime(body['fechacita'], '%Y-%m-%d %H:%M:%S').time().strftime("%I %p").tzinfo(MX)
+        # locale.setlocale(locale.LC_TIME, "es_MX")
+        # MX = pytz.timezone('America/Mexico_City')
+        fecha = datetime.strptime(body['fechacita'], '%Y-%m-%d %H:%M:%S').date().strftime("%d %B, %Y")
+        hora = datetime.strptime(body['fechacita'], '%Y-%m-%d %H:%M:%S').time().strftime("%I %p")
 
         msg = Message('Registro civil del Estado de Chiapas', sender='isback592@gmail.com', recipients=[email])
         msg.html = f"<h2>Cita agendada por {nombreC}</h2>\n" \

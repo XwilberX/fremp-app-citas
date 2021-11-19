@@ -6,7 +6,7 @@ from flask_mail import Mail
 
 app = Flask(__name__, static_folder="build", static_url_path="/")
 
-DB_URI = "mongodb+srv://infrabyte:%40Mendez99@cluster0.sl6e0.mongodb.net/registro?retryWrites=true&w=majority"
+DB_URI = "mongodb+srv://wilber:wil99@cluster0.2k71m.mongodb.net/registro?retryWrites=true&w=majority"
 
 app.config["MONGODB_HOST"] = DB_URI
 
@@ -63,6 +63,3 @@ from project.models.jwt import InvalidToken
 def check_if_blacklisted_token(self, jwt_payload):
     jti = jwt_payload['jti']
     return InvalidToken.is_invalid(jti)
-
-
-
